@@ -1,0 +1,10 @@
+Package: genderscope
+Type: Package
+Title: Client for the GenderScope API
+Version: 0.1.0
+Authors@R: person("GenderScope", role = c("aut", "cre"), email = "support@genderscope.io")
+Description: Query names, email addresses and usernames through the GenderScope API.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: jsonlite, httr2
+RoxygenNote: 7.3.2
