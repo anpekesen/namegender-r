@@ -8,3 +8,5 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: jsonlite, httr2
 RoxygenNote: 7.3.2
+URL: https://genderscope.io/docs, https://github.com/anpekesen/genderscope-r
+BugReports: https://github.com/anpekesen/genderscope-r/issues
