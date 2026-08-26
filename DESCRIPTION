@@ -1,12 +1,12 @@
-Package: genderscope
+Package: namegender
 Type: Package
-Title: Client for the GenderScope API
-Version: 0.1.0
-Authors@R: person("GenderScope", role = c("aut", "cre"), email = "support@genderscope.io")
-Description: Query names, email addresses and usernames through the GenderScope API.
+Title: Client for the NameGender API
+Version: 0.2.0
+Authors@R: person("NameGender", role = c("aut", "cre"), email = "support@namegender.com")
+Description: Query names, email addresses and usernames through the NameGender API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: jsonlite, httr2
 RoxygenNote: 7.3.2
-URL: https://genderscope.io/docs, https://github.com/anpekesen/genderscope-r
-BugReports: https://github.com/anpekesen/genderscope-r/issues
+URL: https://namegender.com/docs, https://github.com/anpekesen/namegender-r
+BugReports: https://github.com/anpekesen/namegender-r/issues
