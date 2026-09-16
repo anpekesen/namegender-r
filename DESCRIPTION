@@ -1,9 +1,10 @@
 Package: namegender
 Type: Package
 Title: Client for the NameGender API
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: person("NameGender", role = c("aut", "cre"), email = "support@namegender.com")
-Description: Query names, email addresses and usernames through the NameGender API.
+Description: Query names, email addresses and usernames, and the country
+    distribution of a name, through the NameGender API.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: jsonlite, httr2
