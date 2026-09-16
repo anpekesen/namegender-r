@@ -39,15 +39,21 @@ ng_countries(client, name, limit = NULL)
   \item{country}{Optional ISO 3166-1 alpha-2 country code.}
   \item{type}{Bulk input type: \code{name}, \code{email}, or \code{username}.}
   \item{limit}{Optional number of counted countries to return in \code{registrations}, 1 to 100. The server default is 25.}
-  \item{...}{Additional API options such as \code{askToAI}.}
+  \item{...}{Additional API options: \code{ai_fallback = TRUE} falls back to a language model for names not in the database (needs AI consent on the account); \code{best_guess = TRUE} returns the most likely gender even below the probability threshold.}
 }
 \value{
 \code{namegender()} returns a client object. Lookup functions return the parsed API response.
+A lookup result has \code{query}, \code{name}, \code{gender}, \code{country},
+\code{probability}, \code{sample_size}, \code{took_ms}, \code{source},
+\code{confidence} and \code{matched_as}, alongside \code{credits_charged},
+\code{credits_remaining}, \code{data_version} and \code{request_id}. A non-2xx
+response is raised as an error carrying the API's \code{message}.
 }
 \examples{
 \dontrun{
 client <- namegender(Sys.getenv("NAMEGENDER_API_KEY"))
 ng_name(client, "Ayse", country = "TR")
+ng_name(client, "Andrea", country = "IT", best_guess = TRUE)
 ng_countries(client, "Mehmet", limit = 10)
 }
 }
