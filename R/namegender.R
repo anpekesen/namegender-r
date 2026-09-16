@@ -19,5 +19,8 @@ compact <- function(x) x[!vapply(x, is.null, logical(1))]
 ng_name <- function(client, name, country = NULL, ...) ng_request(client, "/gender", compact(c(list(name=name, country=country), list(...))))
 ng_email <- function(client, email, country = NULL, ...) ng_request(client, "/gender/email", compact(c(list(email=email, country=country), list(...))))
 ng_username <- function(client, username, country = NULL, ...) ng_request(client, "/gender/username", compact(c(list(username=username, country=country), list(...))))
-ng_bulk <- function(client, names, country = NULL, type = "name", ...) ng_request(client, "/gender/bulk", compact(c(list(names=names, country=country, type=type), list(...))))
+# names her zaman JSON dizisi olarak gider: auto_unbox tek elemanlı vektörü
+# düz metne çevirir ve API tek isimli toplu isteği reddeder. as.character,
+# data frame'den gelen faktör sütununu da isimlere çevirir.
+ng_bulk <- function(client, names, country = NULL, type = "name", ...) ng_request(client, "/gender/bulk", compact(c(list(names=as.list(as.character(names)), country=country, type=type), list(...))))
 ng_countries <- function(client, name, limit = NULL) ng_request(client, "/gender/countries", compact(list(name=name, limit=limit)))
