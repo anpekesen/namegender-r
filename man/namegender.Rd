@@ -43,7 +43,7 @@ ng_countries(client, name, limit = NULL)
 }
 \value{
 \code{namegender()} returns a client object. Lookup functions return the parsed API response.
-A lookup result has \code{query}, \code{name}, \code{gender}, \code{country},
+A lookup result has \code{query}, \code{name}, \code{first_name}, \code{middle_name}, \code{last_name}, \code{name_type}, \code{gender}, \code{country},
 \code{probability}, \code{sample_size}, \code{took_ms}, \code{source},
 \code{confidence} and \code{matched_as}, alongside \code{credits_charged},
 \code{credits_remaining}, \code{data_version} and \code{request_id}. A non-2xx

@@ -16,7 +16,7 @@ arguments to the API, such as `ai_fallback = TRUE` and `best_guess = TRUE`:
 ng_name(client, "Andrea", country = "IT", best_guess = TRUE)
 ```
 
-A result carries `query`, `name`, `gender`, `country`, `probability`,
+A result carries `query`, `name`, `first_name`, `middle_name`, `last_name`, `name_type`, `gender`, `country`, `probability`,
 `sample_size`, `took_ms`, `source`, `confidence` and `matched_as`, alongside
 `credits_charged`, `credits_remaining`, `data_version` and `request_id`.
 Success is the HTTP status: a non-2xx response stops with the API's `message`.
