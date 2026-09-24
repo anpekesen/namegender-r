@@ -8,6 +8,7 @@
 \title{NameGender API Client}
 \description{
 Create a NameGender client and resolve names, email addresses, usernames, or batches.
+For files, see \code{\link{ng_batch}}; for webhooks, \code{\link{ng_webhook_verify}}.
 
 \code{ng_countries()} returns the countries a name is recorded in. It is not a
 country-of-origin or ethnicity inference: \code{registrations} is counted volume,
@@ -47,7 +48,8 @@ A lookup result has \code{query}, \code{name}, \code{first_name}, \code{middle_n
 \code{probability}, \code{sample_size}, \code{took_ms}, \code{source},
 \code{confidence} and \code{matched_as}, alongside \code{credits_charged},
 \code{credits_remaining}, \code{data_version} and \code{request_id}. A non-2xx
-response is raised as an error carrying the API's \code{message}.
+response is raised as an error carrying the API's \code{message}; its class is
+\code{namegender_error}, with \code{status} and the API's \code{body} on the condition.
 }
 \examples{
 \dontrun{
