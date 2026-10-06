@@ -8,7 +8,7 @@
 \title{NameGender API Client}
 \description{
 Create a NameGender client and resolve names, email addresses, usernames, or batches.
-For files, see \code{\link{ng_batch}}; for salutations, \code{\link{ng_salutation}}; for webhooks, \code{\link{ng_webhook_verify}}.
+For files, see \code{\link{ng_batch}}; for salutations, \code{\link{ng_salutation}}; for name checks, \code{\link{ng_name_check}}; for webhooks, \code{\link{ng_webhook_verify}}.
 
 \code{ng_countries()} returns the countries a name is recorded in. It is not a
 country-of-origin or ethnicity inference: \code{registrations} is counted volume,

@@ -1,12 +1,13 @@
 Package: namegender
 Type: Package
 Title: Client for the NameGender API
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: person("NameGender", role = c("aut", "cre"), email = "support@namegender.com")
 Description: Query names, email addresses and usernames, the country
-    distribution of a name, and ready-made letter salutations through the
-    NameGender API. Run CSV and XLSX files as file jobs, and verify the
-    signature of NameGender webhooks.
+    distribution of a name, ready-made letter salutations, and whether a name
+    looks like a real person's name, through the NameGender API. Run CSV
+    and XLSX files as file jobs, and verify the signature of NameGender
+    webhooks.
 License: MIT + file LICENSE
 Depends: R (>= 4.1.0)
 Encoding: UTF-8

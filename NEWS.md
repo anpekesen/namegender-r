@@ -1,3 +1,11 @@
+# namegender 0.7.0
+
+* New `ng_name_check()` and `ng_name_check_bulk()` say whether a name typed
+  into a form looks like a real person's name: `assessment` (`"plausible"`,
+  `"suspicious"`, `"implausible"`), `score` (0-100), `signals` and `evidence`.
+  It never calls a name fake; use it to flag records, not to reject people
+  automatically. Surnames are judged by their shape only. One credit per name.
+
 # namegender 0.6.0
 
 * New `ng_salutation()` and `ng_salutation_bulk()` return a ready-made

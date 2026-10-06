@@ -81,6 +81,36 @@ does not apply here. If you already know the gender, pass `gender = "female"`,
 returns `results` in input order. An unsupported language is a
 `namegender_error` with `status` 422 and `body$supported`.
 
+## Name check
+
+Whether a name typed into a form looks like a real person's name, with the
+reasons. It never calls a name fake: use it to flag records for a closer look,
+not to reject people automatically.
+
+```r
+result <- ng_name_check(client, "asdf qwerty")
+result$assessment   # "implausible"
+result$score        # 0 (0-100)
+result$signals      # data frame: code, severity, part, value
+
+ng_name_check(client, "Jennifer Null")$assessment   # "plausible"
+
+# Names stored in separate fields are used as they are, not parsed:
+ng_name_check(client, first_name = "Jennifer", last_name = "Null", country = "US")
+
+bulk <- ng_name_check_bulk(client, c("Jennifer Null", "asdf qwerty"))
+bulk$results[, c("query", "assessment", "score")]
+bulk$summary   # total, plausible, suspicious, implausible
+```
+
+One credit per name. `assessment` is `"plausible"`, `"suspicious"` or
+`"implausible"`; each signal has `code`, `severity` (`high`, `medium`, `low`,
+`info`, `positive`), `part` and `value` (either can be `NA`). `evidence` says
+whether the first name is counted, attested or not found. Surnames are judged
+by their shape only. It takes `country`, `locale` and `ip`, not `best_guess`
+or `ai_fallback`. `ng_name_check_bulk()` takes up to 100 names and returns
+`results` in input order.
+
 ## File jobs
 
 Upload a CSV or XLSX file (up to 100 MB and 1,000,000 rows) and get it back

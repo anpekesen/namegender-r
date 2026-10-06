@@ -75,6 +75,25 @@ ng_salutation_bulk <- function(client, names, language = NULL, country = NULL, l
   )))
 }
 
+# İsim denetimi -----------------------------------------------------------------
+
+# Formdaki bir adın gerçek bir kişi adına benzeyip benzemediğini gerekçeleriyle
+# söyler; bir ada asla "sahte" demez. best_guess, ai_fallback ve language
+# almaz; ... olmadığı için yanlışlıkla verilen seçenek R hatası verir.
+# first_name ve last_name ayrı tutulan adlar içindir, API onları ayrıştırmaz.
+ng_name_check <- function(client, name = NULL, country = NULL, locale = NULL, ip = NULL,
+                          first_name = NULL, last_name = NULL) {
+  ng_request(client, "/name-check", compact(list(
+    name = name, first_name = first_name, last_name = last_name, country = country, locale = locale, ip = ip
+  )))
+}
+# Seçenekler her isme uygulanır; results girdi sırasını korur.
+ng_name_check_bulk <- function(client, names, country = NULL, locale = NULL, ip = NULL) {
+  ng_request(client, "/name-check/bulk", compact(list(
+    names = as.list(as.character(names)), country = country, locale = locale, ip = ip
+  )))
+}
+
 # Dosya işleri ----------------------------------------------------------------
 
 # Yüklemeyi yeniden denemeye değer durumlar: istek uygulamaya hiç ulaşmamış
