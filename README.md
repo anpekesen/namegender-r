@@ -21,6 +21,22 @@ A result carries `query`, `name`, `first_name`, `middle_name`, `last_name`, `nam
 `credits_charged`, `credits_remaining`, `data_version` and `request_id`.
 Success is the HTTP status: a non-2xx response stops with the API's `message`.
 
+## Country hints
+
+Without a `country`, pass what you know about your end user and the API picks
+the country from it: `locale` (a language tag such as `"it-IT"` or `"pt_BR"`;
+a tag without a region, such as `"en"`, sets no country) or `ip` (the user's
+IP address, not stored by the API). The priority is `country` > `locale` > `ip`.
+
+```r
+result <- ng_name(client, "Andrea", locale = "it-IT", ip = "203.0.113.7")
+result$country_source   # "country", "locale", "ip", or NULL when none applied
+```
+
+`ng_email()`, `ng_username()` and `ng_bulk()` take the same arguments. For
+`ng_bulk()`, `country_source` is on the response envelope (next to `took_ms`),
+not on each row of `results`. File jobs and `ng_countries()` do not take them.
+
 ## Country distribution
 
 Which countries a name is recorded in. This is not a country-of-origin or

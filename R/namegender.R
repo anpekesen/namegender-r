@@ -43,13 +43,15 @@ ng_request <- function(client, path, body) ng_parse(ng_call(client, path, "POST"
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
 compact <- function(x) x[!vapply(x, is.null, logical(1))]
-ng_name <- function(client, name, country = NULL, ...) ng_request(client, "/gender", compact(c(list(name=name, country=country), list(...))))
-ng_email <- function(client, email, country = NULL, ...) ng_request(client, "/gender/email", compact(c(list(email=email, country=country), list(...))))
-ng_username <- function(client, username, country = NULL, ...) ng_request(client, "/gender/username", compact(c(list(username=username, country=country), list(...))))
+# locale ve ip ülke ipucudur: öncelik country > locale > ip. Hangisinin
+# kullanıldığı yanıtın country_source alanında döner (toplu istekte zarfta).
+ng_name <- function(client, name, country = NULL, locale = NULL, ip = NULL, ...) ng_request(client, "/gender", compact(c(list(name=name, country=country, locale=locale, ip=ip), list(...))))
+ng_email <- function(client, email, country = NULL, locale = NULL, ip = NULL, ...) ng_request(client, "/gender/email", compact(c(list(email=email, country=country, locale=locale, ip=ip), list(...))))
+ng_username <- function(client, username, country = NULL, locale = NULL, ip = NULL, ...) ng_request(client, "/gender/username", compact(c(list(username=username, country=country, locale=locale, ip=ip), list(...))))
 # names her zaman JSON dizisi olarak gider: auto_unbox tek elemanlı vektörü
 # düz metne çevirir ve API tek isimli toplu isteği reddeder. as.character,
 # data frame'den gelen faktör sütununu da isimlere çevirir.
-ng_bulk <- function(client, names, country = NULL, type = "name", ...) ng_request(client, "/gender/bulk", compact(c(list(names=as.list(as.character(names)), country=country, type=type), list(...))))
+ng_bulk <- function(client, names, country = NULL, type = "name", locale = NULL, ip = NULL, ...) ng_request(client, "/gender/bulk", compact(c(list(names=as.list(as.character(names)), country=country, type=type, locale=locale, ip=ip), list(...))))
 ng_countries <- function(client, name, limit = NULL) ng_request(client, "/gender/countries", compact(list(name=name, limit=limit)))
 
 # Dosya işleri ----------------------------------------------------------------
