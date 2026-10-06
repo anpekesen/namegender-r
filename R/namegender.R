@@ -54,6 +54,27 @@ ng_username <- function(client, username, country = NULL, locale = NULL, ip = NU
 ng_bulk <- function(client, names, country = NULL, type = "name", locale = NULL, ip = NULL, ...) ng_request(client, "/gender/bulk", compact(c(list(names=as.list(as.character(names)), country=country, type=type, locale=locale, ip=ip), list(...))))
 ng_countries <- function(client, name, limit = NULL) ng_request(client, "/gender/countries", compact(list(name=name, limit=limit)))
 
+# Hitap ------------------------------------------------------------------------
+
+# Hitap uç noktası best_guess ve ai_fallback almaz; bu yüzden burada ... yok,
+# yanlışlıkla verilen seçenek sessizce gitmek yerine R hatası verir.
+# first_name ve last_name ayrı tutulan adlar içindir, API onları ayrıştırmaz.
+ng_salutation <- function(client, name = NULL, language = NULL, country = NULL, locale = NULL, ip = NULL,
+                          gender = NULL, min_probability = NULL, title = NULL, first_name = NULL, last_name = NULL) {
+  ng_request(client, "/salutation", compact(list(
+    name = name, first_name = first_name, last_name = last_name, language = language, country = country,
+    locale = locale, ip = ip, gender = gender, min_probability = min_probability, title = title
+  )))
+}
+# Seçenekler her isme uygulanır; results girdi sırasını korur.
+ng_salutation_bulk <- function(client, names, language = NULL, country = NULL, locale = NULL, ip = NULL,
+                               gender = NULL, min_probability = NULL, title = NULL) {
+  ng_request(client, "/salutation/bulk", compact(list(
+    names = as.list(as.character(names)), language = language, country = country, locale = locale, ip = ip,
+    gender = gender, min_probability = min_probability, title = title
+  )))
+}
+
 # Dosya işleri ----------------------------------------------------------------
 
 # Yüklemeyi yeniden denemeye değer durumlar: istek uygulamaya hiç ulaşmamış

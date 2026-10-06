@@ -1,3 +1,11 @@
+# namegender 0.6.0
+
+* New `ng_salutation()` and `ng_salutation_bulk()` return a ready-made
+  salutation (`formal`, `informal`, `neutral`) for a name, in 16 languages and
+  regional variants. One credit per name. When the gender is not certain the
+  neutral form is used; `form` and `reason` say why. `best_guess` and
+  `ai_fallback` do not apply and are not accepted.
+
 # namegender 0.5.0
 
 * `ng_name()`, `ng_email()`, `ng_username()` and `ng_bulk()` take `locale` and
