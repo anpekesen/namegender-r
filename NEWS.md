@@ -1,3 +1,9 @@
+# namegender 0.7.1
+
+* First release on CRAN. Package metadata only: a named maintainer, the
+  'NameGender' web service quoted and linked in the description, and
+  NameGender listed as copyright holder. No change to the functions.
+
 # namegender 0.7.0
 
 * New `ng_name_check()` and `ng_name_check_bulk()` say whether a name typed
