@@ -111,6 +111,34 @@ by their shape only. It takes `country`, `locale` and `ip`, not `best_guess`
 or `ai_fallback`. `ng_name_check_bulk()` takes up to 100 names and returns
 `results` in input order.
 
+## Age from name
+
+How old the people recorded with a first name are: the median age, the middle
+half and the middle 80% of their ages. It describes a group, not a person:
+never use it for decisions about an individual.
+
+```r
+result <- ng_age(client, "Brittany")
+result$age            # 36 (median)
+result$age_range      # low 32, high 38 (middle half)
+result$age_range_80   # low 28, high 41 (middle 80%)
+result$birth_year     # 1990
+
+# Only one gender's records:
+ng_age(client, "Jordan", gender = "female", country = "US")
+
+bulk <- ng_age_bulk(client, c("Brittany", "Margaret"), country = "US")
+bulk$results[, c("name", "age", "birth_year")]
+```
+
+One credit per name. It covers the US, France and Norway; for another country
+`age` is `NULL`, `reason` is `"country_not_covered"` and no credit is charged
+(`"not_found"` and `"insufficient_data"` are the other reasons). A missing age
+is an answer, not an error. `gender` (`"male"` or `"female"`) narrows the
+answer to that gender's records. It takes `country`, `locale` and `ip`; with
+no hint the US data is used and `country_source` is `"default"`.
+`ng_age_bulk()` takes up to 100 names and returns `results` in input order.
+
 ## File jobs
 
 Upload a CSV or XLSX file (up to 100 MB and 1,000,000 rows) and get it back

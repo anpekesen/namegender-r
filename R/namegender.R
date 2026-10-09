@@ -94,6 +94,25 @@ ng_name_check_bulk <- function(client, names, country = NULL, locale = NULL, ip 
   )))
 }
 
+# Yaş -------------------------------------------------------------------------
+
+# Bir ilk adla kayıtlı kişilerin yaşı: medyan, ortadaki yarı ve ortadaki %80.
+# Bir grubu anlatır, kişiyi değil. age boşken (tekilde NULL, toplu results'ta
+# NA) reason dolar (not_found, insufficient_data, country_not_covered); bu
+# hata değil, 200'dür.
+# gender yalnızca "male" ya da "female" alır ve o cinsiyetin kayıtlarına daraltır.
+ng_age <- function(client, name, gender = NULL, country = NULL, locale = NULL, ip = NULL) {
+  ng_request(client, "/age", compact(list(
+    name = name, gender = gender, country = country, locale = locale, ip = ip
+  )))
+}
+# Seçenekler her isme uygulanır; results girdi sırasını korur.
+ng_age_bulk <- function(client, names, gender = NULL, country = NULL, locale = NULL, ip = NULL) {
+  ng_request(client, "/age/bulk", compact(list(
+    names = as.list(as.character(names)), gender = gender, country = country, locale = locale, ip = ip
+  )))
+}
+
 # Dosya işleri ----------------------------------------------------------------
 
 # Yüklemeyi yeniden denemeye değer durumlar: istek uygulamaya hiç ulaşmamış

@@ -1,3 +1,13 @@
+# namegender 0.8.0
+
+* New `ng_age()` and `ng_age_bulk()` return how old the people recorded with
+  a first name are: `age` (the median), `age_range` (the middle half),
+  `age_range_80` (the middle 80%) and `birth_year`. `gender` narrows the
+  answer to one gender's records. It covers the US, France and Norway; for
+  another country `age` is `NULL`, `reason` is `"country_not_covered"` and no
+  credit is charged. It describes a group, not a person; never use it for
+  decisions about an individual. One credit per name.
+
 # namegender 0.7.1
 
 * First release on CRAN. Package metadata only: a named maintainer, the
